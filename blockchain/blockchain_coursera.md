@@ -142,7 +142,7 @@ Double spending:
 * Managing exceptional situation: Ethereum 2018 hard fork at 4.7 million blocks after DAO attack
 
 ____
-### Reading
+### Block Chain Basics [[Link]]
 #### Module 1
 * [https://www.pcmag.com/news/blockchain-the-invisible-technology-thats-changing-the-world]
 * Unspent Transaction Outputs (UTXO) [[Link](https://smithandcrown.com/glossary/unspent-transaction-outputs-utxo/)]
@@ -200,8 +200,15 @@ ____
 *  Bitcoin, Blockchain Forks & Lightning [[Link](https://www.youtube.com/watch?v=8uF7RVF2osk)]
 
 
-#### Courses
-* Block Chain Basics [[Link]]
-* Smart Contract [[Link](https://www.coursera.org/learn/smarter-contracts/lecture/ZAf5T/smart-contract-basics-why-smart-contracts)]
+### Smart Contract [[Link](https://www.coursera.org/learn/smarter-contracts/lecture/ZAf5T/smart-contract-basics-why-smart-contracts)]
+* Smart Contract: Building blocks for digital markets [[Link](http://www.fon.hum.uva.nl/rob/Courses/InformationInSpeech/CDROM/Literature/LOTwinterschool2006/szabo.best.vwh.net/smart_contracts_2.html)]
+* How to Learn Solidity: The Ultimate Ethereum Coding Guide [[Link](https://blockgeeks.com/guides/solidity/)]
+* Remix- Solidity IDE [[Link](http://remix.readthedocs.io/en/latest/)]
 * Decentralized Applications [[Link](https://www.coursera.org/learn/decentralized-apps-on-blockchain)]
 * Blockchain Platforms [[Link](https://www.coursera.org/learn/blockchain-platforms)]
+* Structure of a Contract [[Link](http://solidity.readthedocs.io/en/develop/structure-of-a-contract.html)]
+* Camel Case [[Link](https://en.wikipedia.org/wiki/Camel_case)]
+* Introduction to Smart Contracts [[Link](http://solidity.readthedocs.io/en/develop/introduction-to-smart-contracts.html)]
+* Account Types, Gas, and Transactions [[Link](http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html)]
+* Ethereum, Tokens, and Smart Contracts [[Link](https://medium.com/@k3no/ethereum-tokens-smart-contracts-80f639f5c46b)]
+* Decoding the Enigma of Bitcoin Mining [[Link](https://medium.com/all-things-ledger/decoding-the-enigma-of-bitcoin-mining-f8b2697bc4e2)]
