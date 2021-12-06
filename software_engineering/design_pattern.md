@@ -5,6 +5,18 @@
 * multiple subclass can implement the interface, and object instantiation is deferred to subclass
 * static factory method decides which subclass to instantiate, based on input params
 * client passes some info/params to the factory method, and get the object
+
+### Prototype [[Link](https://www.geeksforgeeks.org/prototype-design-pattern/?ref=lbp)]
+* a prototype **registry** saves a string -> object mapping of objects (**prototypes**).
+* client can get a new object by calling the registry, which clones a copy of the object.
+* useful when objects are expensive and slow to create. Clone is faster.
+
+#### Pros
+* reduce number of classes
+
+#### Cons
+* each prototype (and subclass) most implement `clone` which may be difficult
+
 ___
 ### Builder [[link](https://www.geeksforgeeks.org/builder-design-pattern/)]
 * **builder** defines an interface
