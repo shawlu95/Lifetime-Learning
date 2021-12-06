@@ -82,8 +82,43 @@ Transaction Zero
 
 ## Ethereum
 * smart contract allows embedding any business logic
+  - must be deterministic
+  - have their own address, from which to send and receive ether
+  - can track caller, tell whether it's admin account
+  - can read data from Etherum blockchain
 * solidity is a high-level specialized language for smart contract compiled into binary
+  - similar to javascript, loosely typed
+  - index for multi-dimension array is in reversed order
+  - online IDE: Remix
+  - local IDE: [Truffle[(https://github.com/trufflesuite/truffle)]
+    * [ganache-cli](https://github.com/trufflesuite/ganache-cli-archive)
+    * kill process: `kill $(lsof -t -i:8545)`
+  - The `msg` variable (together with `tx` and `block`) is a special global variable that contains properties which allow access to the blockchain
+  - For solidty v0.5 the constant modifier for function was deprecated, either use pure or view.
+  - visibility
+    * external: only other contracts can call it
+    * public: can be called everywhere
+    * internal (default): current contract and subclass contracts can call
+      - subclass a contract: `contract sub is super {...}`
+    * private: only current contract
+  - non-state changing modifier:
+    - `view`: public vars are automatically view func
+    - `pure`: only compute something, not return anything
+  - memory:
+    * `memory`: not persisted, string is array of bytes
+    * `storage`: persisted
+* block chain as a service
+  - infura.io
+  - alchemy.com
+  - look up chain id at `chainlist.org network`
 * every node (Ethereum Virtual Machines) should be able to execute contract code
+  - only access to outside data is through **oracle** (there are company specialized in this)
+  - keep subroutine, data structure simple (incur gas cost)
+  - once deployed, code cannot be changed, but *data can be changed*
+  - oracle uses decentralized network: `chain.data.link`
+    * https://github.com/smartcontractkit/chainlink
+* ABI: application binary interface
+  - define how solidty and other languages can interact with contracts
 * add a layer of logic to the trust infra supported by blockchain
 * two types of account:
   - externally owned accounts (EOA): controlled by private key
@@ -92,6 +127,7 @@ Transaction Zero
 * start gas: max # of gas
 * gas price: fee for computation
 * memory-based proof-of-work
+* meta mask is most popular wallet
 * incentive:
   - every action requires gas
   - gas cost does not vary. fixed for every type of operation
@@ -100,6 +136,60 @@ Transaction Zero
   - gas spent: actual amount spent on each block
   - winner miner: 3 ether base fees + transaction fees
     * other miners don't win: ommers, create ommer blocks (added as side block to the main chain), receive consolation fees
+
+#### [brownie](https://github.com/eth-brownie/brownie): built on web 3. used by yearn, badger etc
+- add my real account (from metamask) to brownie: `brownie accounts new {account_name}`
+- `brownie accounts list`
+- `brownie accounts delete Bailey`
+- `brownie console`
+* add network to brownie: `brownie networks add Ethereum ganache-local host=http://0.0.0.0:8545 chainid=1337`
+* run test on local, not live chain ()
+* fork: copy a live blockchain to local and work on it
+
+```bash
+brownie networks add development mainnet-fork-dev cmd=ganache-cli host=http://127.0.0.1 fork-'https://mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID' accounts=10 mnemonic=brownie port=8545
+
+brownie networks add development mainnet-fork-dev cmd=ganache-cli host=http://127.0.0.1 fork=https://eth-mainnet.alchemyapi.io/v2/OKS7Wnp_0U98Iz9sPbtFGGU6FzdqHGRc accounts=10 mnemonic=brownie port=8545
+```
+
+```bash
+Launching 'ganache-cli --port 8545 --gasLimit 12000000 --accounts 10 --hardfork istanbul --mnemonic brownie'...
+Brownie environment is ready.
+>>> SimpleStorage
+[]
+>>> account=accounts[0]
+>>> len(accounts)
+10
+>>> simple_storage = SimpleStorage.deploy({"from": account})
+Transaction sent: 0xa25637614c1b33eab32dcea27441010406db2770379cc6dc020f802d813b7976
+  Gas price: 0.0 gwei   Gas limit: 12000000   Nonce: 0
+  SimpleStorage.constructor confirmed   Block: 1   Gas used: 420320 (3.50%)
+  SimpleStorage deployed at: 0x3194cBDC3dbcd3E11a07892e7bA5c3394048Cc87
+
+>>> simple_storage
+<SimpleStorage Contract '0x3194cBDC3dbcd3E11a07892e7bA5c3394048Cc87'>
+>>> len(SimpleStorage)
+1
+>>> simple_storage = SimpleStorage.deploy({"from": account})
+Transaction sent: 0x313e9e5bce6f4d23ce795a7d0b46f4238ab5139436945e107cacb8c316310cc3
+  Gas price: 0.0 gwei   Gas limit: 12000000   Nonce: 1
+  SimpleStorage.constructor confirmed   Block: 2   Gas used: 420320 (3.50%)
+  SimpleStorage deployed at: 0x602C71e4DAC47a042Ee7f46E0aee17F94A3bA0B6
+
+>>> len(SimpleStorage)
+2
+>>> simple_storage.retrieve()
+0
+>>> simple_storage.store(15, {"from":account})
+Transaction sent: 0x8e15adad8f35d811132d3034ee089c2f8b991df5be1125f80fe3e3df51baaec4
+  Gas price: 0.0 gwei   Gas limit: 12000000   Nonce: 2
+  SimpleStorage.store confirmed   Block: 3   Gas used: 41517 (0.35%)
+
+<Transaction '0x8e15adad8f35d811132d3034ee089c2f8b991df5be1125f80fe3e3df51baaec4'>
+>>> simple_storage.retrieve()
+15
+>>>
+```
 
 ## Cryptography Basics
 * for symmetric crypto, it's easy to derive private key from encrypted data
@@ -199,7 +289,7 @@ ____
 * Split on Forks? Blockchain Leaders Learn Tough Lessons from Bitcoin Scaling [[Link](https://www.coindesk.com/split-forks-blockchain-leaders-learn-tough-lessons-bitcoin-scaling/)]
 *  Bitcoin, Blockchain Forks & Lightning [[Link](https://www.youtube.com/watch?v=8uF7RVF2osk)]
 
-
+___
 ### Smart Contract [[Link](https://www.coursera.org/learn/smarter-contracts/lecture/ZAf5T/smart-contract-basics-why-smart-contracts)]
 * Smart Contract: Building blocks for digital markets [[Link](http://www.fon.hum.uva.nl/rob/Courses/InformationInSpeech/CDROM/Literature/LOTwinterschool2006/szabo.best.vwh.net/smart_contracts_2.html)]
 * How to Learn Solidity: The Ultimate Ethereum Coding Guide [[Link](https://blockgeeks.com/guides/solidity/)]
@@ -212,3 +302,33 @@ ____
 * Account Types, Gas, and Transactions [[Link](http://ethdocs.org/en/latest/contracts-and-transactions/account-types-gas-and-transactions.html)]
 * Ethereum, Tokens, and Smart Contracts [[Link](https://medium.com/@k3no/ethereum-tokens-smart-contracts-80f639f5c46b)]
 * Decoding the Enigma of Bitcoin Mining [[Link](https://medium.com/all-things-ledger/decoding-the-enigma-of-bitcoin-mining-f8b2697bc4e2)]
+
+#### Module 2
+* What is Solidity? Our Guide to the Language of Ethereum Smart Contracts [[Link]()]
+* Intro to Solidity 2017 Edition [[Link](https://www.youtube.com/watch?v=KkN1O8TChbM)]
+* Ethereum Smart Contracts In Solidity 1 - State, Functions, Modifiers and Events [[Link](https://www.youtube.com/watch?v=xWKq86PWG0o)]
+* Solidity Frequently Asked Questions [[Link](https://solidity.readthedocs.io/en/v0.4.24/frequently-asked-questions.html)]
+* Types [[Link](http://solidity.readthedocs.io/en/develop/types.html)]
+* Learning Solidity : Tutorial 6 Data Types (Array, Mapping, Struct) [[Link](https://www.youtube.com/watch?v=8UhO3IKApSg)]
+* Units and Globally Available Variables [[Link](http://solidity.readthedocs.io/en/develop/units-and-global-variables.html)]
+* Solidity Tutorials [[Link](https://ethereumbuilders.gitbooks.io/guide/content/en/solidity_tutorials.html)]
+* Types [[Link](http://solidity.readthedocs.io/en/develop/types.html)]
+* Enums [[Link](http://solidity.readthedocs.io/en/develop/types.html#enums)]
+* Liquid Democracy uses Blockchain to Fix Politics, and Now You Can Vote for It [[Link](https://beta.techcrunch.com/2018/02/24/liquid-democracy-uses-blockchain/)]
+* Contracts [[Link](http://solidity.readthedocs.io/en/develop/contracts.html)]
+
+#### Module 3
+* Voting [[Link](https://soliditycookbook.com/voting/)]
+* Enum [[Link](https://solidity.readthedocs.io/en/develop/types.html#enums)]
+* Time Units [[Link](https://solidity.readthedocs.io/en/develop/units-and-global-variables.html#time-units)]
+* Solidity Learning: Revert(), Assert(), and Require() in Solidity, and the New REVERT Opcode in the EVM [[Link](https://medium.com/blockchannel/the-use-of-revert-assert-and-require-in-solidity-and-the-new-revert-opcode-in-the-evm-1a3a7990e06e)]
+* Technical Introduction to Events and Logs in Ethereum [[Link](https://media.consensys.net/technical-introduction-to-events-and-logs-in-ethereum-a074d65dd61e)]
+* Capturing Smart Contract Events in our User Interface (Solidity) [[Link](https://www.youtube.com/watch?v=L5Au5DY8eL4)]
+
+#### Module 4
+* [ ] Ethereum Smart Contract Security Best Practices [[link](https://consensys.github.io/smart-contract-best-practices/)]
+* [ ] Beyond Smart Contract Best Practices for UX and Interoperability [[link](https://medium.com/@maurelian/beyond-smart-contract-best-practices-for-ux-and-interoperability-6d94d27c1e0f)]
+* [ ] Solidity Smart Contract Security Best Practices [[link](https://lightrains.com/blogs/smart-contract-best-practices-solidity)]
+* [ ] [[link]()]
+* [ ] [[link]()]
+* [ ] [[link]()]
