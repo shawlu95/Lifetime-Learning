@@ -1,0 +1,6 @@
+npm install --save-dev hardhat
+npx hardhat
+npx hardhat compile
+
+run tasks
+npx hardhat accounts

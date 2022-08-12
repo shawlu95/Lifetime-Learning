@@ -136,6 +136,8 @@ Transaction Zero
   - gas spent: actual amount spent on each block
   - winner miner: 3 ether base fees + transaction fees
     * other miners don't win: ommers, create ommer blocks (added as side block to the main chain), receive consolation fees
+* unit test: local ganache chain, test smallest pieces of code in isolated instance
+* integration test: test net, test across multiple complex systems
 
 #### [brownie](https://github.com/eth-brownie/brownie): built on web 3. used by yearn, badger etc
 - add my real account (from metamask) to brownie: `brownie accounts new {account_name}`
@@ -145,11 +147,30 @@ Transaction Zero
 * add network to brownie: `brownie networks add Ethereum ganache-local host=http://0.0.0.0:8545 chainid=1337`
 * run test on local, not live chain ()
 * fork: copy a live blockchain to local and work on it
+* bake a boilerplate template: `brownie bake chainlink-mix`
+* install an external package: `brownie inject eth-brownie matplotlib`
+
+#### Binance Smart Chain
+  - register on: https://admin.moralis.io/servers
+  - `brownie networks add "BSC Test" bsc_test_moralis host='https://speedy-nodes-nyc.moralis.io/800254e610a65f3e99e7d323/bsc/testnet' name="BSC Test" chainid=97 explorer='https://api-testnet.bscscan.com/api'`
+  - my bsc scan API key `HXHA77A922BK2R62P2QAAR2YU2WNXMX6WZ` -> save as `$BSCSCAN_TOKEN`
+  - centaur address:
+    - Verified, private: `0xd376A18507f0fb677b7818fD19213b306eBD7F6A`
+    - Verified, public: `0xEfe5a5981E8116A6A3E80B755E20edBdED48BAe9`
+  - faucet: https://testnet.binance.org/faucet-smart
+![alt-text](assets/centaur_bsc.png)
+
+22WAVSVxQwe4ej4HOyvdwDDjFYS
+d889cac05b56074dda4c26d9589fb9e9
+https://22WAVSVxQwe4ej4HOyvdwDDjFYS:d889cac05b56074dda4c26d9589fb9e9@eth2-beacon-mainnet.infura.io
+wss://22WAVSVxQwe4ej4HOyvdwDDjFYS:d889cac05b56074dda4c26d9589fb9e9@eth2-beacon-mainnet.infura.io
 
 ```bash
 brownie networks add development mainnet-fork-dev cmd=ganache-cli host=http://127.0.0.1 fork-'https://mainnet.infura.io/v3/$WEB3_INFURA_PROJECT_ID' accounts=10 mnemonic=brownie port=8545
 
 brownie networks add development mainnet-fork-dev cmd=ganache-cli host=http://127.0.0.1 fork=https://eth-mainnet.alchemyapi.io/v2/OKS7Wnp_0U98Iz9sPbtFGGU6FzdqHGRc accounts=10 mnemonic=brownie port=8545
+
+brownie networks add
 ```
 
 ```bash
@@ -231,8 +252,143 @@ Double spending:
   - miner incentive reduced from 5 to 3 ETH
 * Managing exceptional situation: Ethereum 2018 hard fork at 4.7 million blocks after DAO attack
 
+### ERC20
+It's a token and a contract. Tether, chain link, uni token are all ERC20.
+* to build a token, simply comply with the ERC20 token standard
+* https://eips.ethereum.org/EIPS/eip-20
+* Copy the skeleton code from: https://docs.openzeppelin.com/contracts/4.x/erc20
+* https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol
+* AvaToken: `0xb8995B07Ac51982e71fAb7dce401B6d13Bf140aA`
+  - https://rinkeby.etherscan.io/address/0xb8995B07Ac51982e71fAb7dce401B6d13Bf140aA
+* Can register token to a liquidity pool like unitswap and sell for ether
+
+## Defi & Aave
+* ranking: https://defipulse.com/
+* DEX: decentralized exchange e.g. `paraswap.io`
+* AAVE: `testnet.aave.com/deposit`
+  - request test net token: https://linkfaucet.protofire.io/kovan
+  - where you can put down toke nas collateral and lend/borrow
+  - when deposit, ETH is exchanged for `WETH`: `0xA61ca04DF33B72b235a8A28CfB535bb7A5271B70`
+    * https://kovan.etherscan.io/address/0xA61ca04DF33B72b235a8A28CfB535bb7A5271B70#code
+  - lending pool: https://docs.aave.com/developers/the-core-protocol/lendingpool
+* `aETH`: interest bearing ETH
+* look up test net address and faucet: https://docs.chain.link/docs/link-token-contracts
+* `app.aave.com/markets`
+
+## NTF
+* ERC-721 aka NFT standard, token standard created on Ethereum chain
+* https://eips.ethereum.org/EIPS/eip-721
+* https://docs.openzeppelin.com/contracts/3.x/erc721
+* unlike currency, one token is NOT interchangeable with another
+* each token ID represents an unique asset
+* metadata describe the asset piece (image, art etc)
+* Token URI includes:
+
+```
+{
+  "name":...,
+  "description": "Description",
+  "image": "URI",
+  "attributes": []
+}
+```
+
+* tutorial: https://blog.chain.link/build-deploy-and-sell-your-own-dynamic-nft/
+* `brownie bake nft-mix`
+* Ethereum can't store a lot of data
+* Store artwork in ITFS: inter-planetary file system
+* NFT can interact with one another in attributes inside token URI
+* Open sea test net only support rinkeby
+* Both metadata file and asset file (e.g. image) must be hosted on IPFS
+* IPFS:
+  - download: https://docs.ipfs.io/install/command-line/#official-distributions
+  - HTTP API: https://docs.ipfs.io/reference/http/api/#api-v0-add
+* Also upload asset to `https://www.pinata.cloud/`
+  - password: `.!P#R8mCzPFC2JB`
+  - if node goes down, image should not go down
+* paste contract address at `https://testnets.opensea.io/` to view it in NFT market place
+* NFT demo project:
+  - rinkeby contract: https://rinkeby.etherscan.io/address/0x01cb81666F563f8C350793Ad03eF799a08Ef576b
+  - opensea: `https://testnets.opensea.io/assets?search[query]=0x01cb81666F563f8C350793Ad03eF799a08Ef576b`
+  - tokenId2: `https://testnets.opensea.io/assets/0x01cb81666F563f8C350793Ad03eF799a08Ef576b/2`
+
+## Evolving and Updating Contract
+* Social YEET Migration: deploy a new contract and tell people to use it
+  - different address
+  - users are slow to move
+* Proxy: users always interact with proxy
+  - delegate call: a variant of message call, code at the target address is executed in the context of the calling contract and `ms.sender` and `msg.value` do not change
+  - proxy contract has the same address forever
+  - proxy delegates call to different implementation/versions aka **implementation contract**
+  - Admin user decides when to upgrade, and change the address pointing towards implementation contract
+  * Two difficulties
+    - storage clashes
+    - function selector clashes: func selected is a 4-byte hash of func names and args
+* Transparent Proxy
+  - admin can't call implementation contract function
+  - users call implementation functions
+  - can't accidently have two function clashes
+* Universal Upgradable Proxy
+* Diamond Proxy
+  - multiple implementation contracts, very modular
+  - lot more code
+* example: `brownie bake upgrades-mix`
+* Example (all contracts verufued):
+  - Box contract V1: https://rinkeby.etherscan.io/address/0x6f6dde90079E79FB159b0b03C75A46B16caC8897
+  - Proxy Admin: https://rinkeby.etherscan.io/address/0xb334Cd546a6c7365C9cfDA0783346AA8bee0c705
+    * received an upgrade call
+  - Box contract V2: https://rinkeby.etherscan.io/address/0xe0e2D0bE36Bcc91e6db3A16022E68C0dd7dAFc93
+  - TransparentUpgradeableProxy: https://rinkeby.etherscan.io/address/0x2c8390239a1A7633C1531077CbDAA9A579C11e18
+    * functions such as incrementand store are called on this
+
+### DeFi App
+* TokenFarm: 0xf9a8838cE007d3610196e00130Cc71C4aafD5Dbf
+* Three tokens:
+    - Dapp: 0x6C015925448A0AB03559C09DcD619b49c02668A0
+    - stake: 1200499647953475
+    - initial stake: 5 either, or 5E18
+  - FAU: 0xFab46E002BbF0b4509813474841E0716E6730136
+  - WETH: 0xc778417E063141139Fce010982780140Aa0cD5Ab
+* Get token value:
+  - Dapp: 240099929590695, 18 decimals
+  - FAU: 240099929590695, 18 decimals
+  - WETH: 416038723160, 8 decimals
+
+### Front Ened
+* Install NPX: `npm install -g npx`, check `npx --version`
+* Install yarn: `npm install --global yarn`, check `yarn --version`
+* init a react app: `npx create-react-app front_end --template typescript`
+* execute `yarn` to install all dependencies specified in package.json
+* execute `yarn start` to start server at port `3000` (conflict with Grafana)
+* no need to reinvent wheel, useDapp provides many useful stuff: `yarn add @usedapp/core`
+  - see [documentation](https://usedapp.readthedocs.io/en/latest/getting-started.html)
+* Use material-UI for styling: `https://material-ui.com/` -> `https://mui.com/`
+* add `"suppressImplicitAnyIndexErrors": true` to `tsconfig.json`
+```bash
+Success! Created front_end at /Users/shawlu/Documents/proj/Blockchain-Tutorial/defi-stake-yield-brownie/front_end
+Inside that directory, you can run several commands:
+
+  yarn start
+    Starts the development server.
+
+  yarn build
+    Bundles the app into static files for production.
+
+  yarn test
+    Starts the test runner.
+
+  yarn eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+
+We suggest that you begin by typing:
+
+  cd front_end
+  yarn start
+```
+
 ____
-### Block Chain Basics [[Link]]
+### Block Chain Basics
 #### Module 1
 * [https://www.pcmag.com/news/blockchain-the-invisible-technology-thats-changing-the-world]
 * Unspent Transaction Outputs (UTXO) [[Link](https://smithandcrown.com/glossary/unspent-transaction-outputs-utxo/)]

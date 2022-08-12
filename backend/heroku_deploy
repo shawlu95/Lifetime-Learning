@@ -1,0 +1,13 @@
+git show-ref
+```
+00cce627841e80d10ece7a882d747b151f014730 refs/heads/main
+00cce627841e80d10ece7a882d747b151f014730 refs/remotes/heroku/main
+00cce627841e80d10ece7a882d747b151f014730 refs/remotes/origin/main
+```
+git push heroku main
+heroku open 
+heroku logs
+
+
+new culture
+https://fathomless-eyrie-40283.herokuapp.com/

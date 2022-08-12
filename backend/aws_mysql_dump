@@ -1,0 +1,25 @@
+sudo mysqldump \
+    --databases centaur \
+    --master-data=2  \
+    --single-transaction \
+    --order-by-primary \
+    -r centaur.sql \
+    -uroot \
+    -p12345678 
+
+gzip centaur.sql 
+
+chmod 400 centaur.pem
+
+scp -r -i centaur.pem centaur.sql.gz ec2-user@ec2-54-215-188-68.us-west-1.compute.amazonaws.com:/home/ec2-user/centaur.sql.gz
+
+ssh -i centaur.pem ec2-user@ec2-54-215-188-68.us-west-1.compute.amazonaws.com
+
+sudo yum update -y
+sudo yum install mysql -y
+
+gzip centaur.sql.gz -d
+
+mysql -h centaur.c2jsoodtxljv.us-west-1.rds.amazonaws.com -P 3306 -u root -p 
+
+mysql> source centaur.sql;
