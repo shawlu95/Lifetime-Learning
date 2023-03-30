@@ -1,0 +1,3 @@
+Rice paddies require extensive care from farmers. Western crops don’t require as much care. So the output is directly proportional to the amount of care farmers put in. Landlords are obliged to keep Chinese farmers motivated. This is accomplished by imposing a flat fee per acres of land, above which the surplus belongs to the farmers.
+
+Rice paddies requires 360 days of work a year, waking up before dawn. Proverbs 人勤地不懒, 一分耕耘一分收获 reflect the Chinese belief in a direct correlation between hard work and reward. It translates to modern day society work ethics and university library where Chinese are exceptionally hardworking.
