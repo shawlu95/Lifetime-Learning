@@ -1,0 +1,1 @@
+Racehorses sometimes got an yearning for natural speed but they are wild, ill-tempered. The trainer has a choice: geld him, he becomes more tractable, but it can take away his spark, the thing that makes him exceptional. So the trainer might put blinders on him, so when the horse races he feels he's alone. He does what he does best, but on the track.
