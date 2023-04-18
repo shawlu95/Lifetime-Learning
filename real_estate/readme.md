@@ -137,4 +137,16 @@ knowledge is power; more specific knowledge, better investment decision
 
 > The higher the percentage of owner-occupiers, the better the chance that there will be more pride of ownership and therefore more responsible treatment of common elements and amenities.
 
-###
+### Property Valuation
+
+- market comparison approach: often used for single-family dwellings; keep sales dates as current as possible;
+  - may estimate by average price per unit
+  - or income per square foot
+- cost approach: calculate the cost by buying the land and constructing the house; adjust for estimated useful life
+- income approach: present worth of future cash flow
+  - capitalization ratio (CAP rate): the rate of return used to derive capital value
+    - higher risk means lower CAP rate, lower price to pay
+  - net operating income (NOI): after all expenses but before taxes; does not take into account financing or mortgages
+  - gross income multiplier (GIM): no mortgage payment or operating expense
+  - net income multiplier (NIM): after all operating expenses, allowances for vacancy, before mortgage
+  - internal rate of return: annualized return accounting for sale, capital gain, closing costs on sale, legal fee, real estate commissions, mortgage penalty if applicable (adjust for inflation)
