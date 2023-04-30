@@ -41,6 +41,15 @@ Advantages of Residential RE
 - easier to renovate
 - shorter lease, more frequent rent increase
 - fewer legal details and paperwork
+- policy encourages mortgage lending (home owner loan corporation bailed out 20% of homeowner during great depression)
+  - before great depression, mortgages must be paid in 5-10 years in sequence of "balloon payments" of interests followed by principal
+  - 1934 Federal Housing Administration started insuring mortgages, which requires 15+ years amortazing, and cannot be "balloon payments", but fixed monthly payments.
+  - in 1950s, FHA started insuring 30-year mortgages with fixed interests
+  - 1938 Federal National Mortgage Association which buys mortgage from bank to support the market, giving bank more money to lend out (Fannie Mae) which became private in 1968
+  - 1970 Federal Home Loan Mortgage Corporation was created, or Freddie Mac, which buys mortgage and repackage as security with guarantee against default and sell (which Fannie Mae also started doing)
+  - Fannie and Freddie are both private, and US gove won't back them with tax money (but bailed them out in 2008)
+  - Canada has Canada Housing Mortgage Corporation, not private, but owned by the gov
+- larger market, 2/3 of USA households own their home
 
 Disadvantages of Residentail RE
 
@@ -51,6 +60,45 @@ Disadvantages of Residentail RE
 - short lease, more paperwork
 - single tenant, more risk of default
 - property manager, more work
+
+### Trend
+
+- square footage has been reducing in industrial ventures
+- renters like smart technology and are willing to pay extra
+- carbon neutral, eco-friendly
+- simpler lives
+
+### Types of CRE
+
+- industrial: heavy machinery on-site, shipping and receiving docks, heavy-duty structural components
+- office:
+- retail: stores, strip malls, banks, restaurants, service centers
+- multifamily: condo, duplexes, apartment
+- special purpose: hotels, stadium, amusement park
+- mixed use: apartments with grocery stores, banks, gym etc.
+
+### How to Get Started
+
+- know the CRE businesses inside and out. Metrics and processes
+- surround with knowledgeable and experienced people
+- compare the value of the offfer to what has sold recently
+- know your financing forwards and backwards
+- lessen the risk
+- diligent and thorough in assessing property value
+- important investment ideologies: loan-to-value (LTV), debt-service coverage ratio (DSCR)
+
+### Metrics
+
+- mortgage payment
+- capitalization rate: net operating income / total property tax
+- rent cost ratio: monthly rent income / total property tax
+- gross yield: annual rent income / total property tax
+- debt service ratio: net operating income / debt service (should be above 1.0)
+- cash-on-cash returns: annual cash flow / cash outflow
+- the 50% rule: expenses should not exceed 50% of operating income
+- after-repair value(ARV): property purchase price + rennovation value
+- 70% of ARV rule (for rehab property): 70% of ARV - repair cost
+- square footage
 
 ### Glossary
 
