@@ -1,4 +1,5 @@
 Basics
+
 ```bash
 tmux new -session_name
 tmux new-session -session_name
@@ -11,6 +12,7 @@ tmux kill-server
 ```
 
 Window
+
 ```bash
 # create window
 <prefix> + C
